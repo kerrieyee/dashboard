@@ -1,3 +1,3 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :github, 'ID', 'TOKEN', :scope => 'repo,gist'
+  provider :github, Rails.application.secrets.github_id, Rails.application.secrets.github_secret, :scope => 'repo,gist'
 end

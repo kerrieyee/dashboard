@@ -20,7 +20,8 @@ class DashboardsController < ApplicationController
 
   def create_user_pr_count(repo)
     #if I didn't put the per page to 100 it limited me to 30prs
-    mentions = Octokit.search_issues("state:open repo:thredup/#{repo} is:pr", per_page: 100)[:items].flat_map{ |pr| pr.body.scan(/@[a-zA-z\d]*/)  }
+    client = Octokit::Client.new(:access_token => current_user.token)
+    mentions = client.search_issues("state:open repo:thredup/#{repo} is:pr", per_page: 100)[:items].flat_map{ |pr| pr.body.scan(/@[a-zA-z\d]*/)  }
     mentions.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
     #returns something like
     # {"@edmundonm"=>11,

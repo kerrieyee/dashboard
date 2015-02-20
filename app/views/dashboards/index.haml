@@ -1,17 +1,18 @@
 #team_dashboard
-  %h1 Pull Request Dashboard
+  %h1.title Pull Request Dashboard
   .layout
-    - @repo_pr.each do |repo, username_count|
-      .column
-        %h2= repo
-        %table
-          %tr
-            %th Name
-            %th PR count
-          - username_count.each do |username, count|
-            %tr{class: cycle('odd', 'even')}
-              %td=username
-              %td=count
-    .clear
+    .flex-container
+      - @repo_pr.each do |repo, username_count|
+        .column
+          %h2= repo
+          %table
+            %tr
+              %th.even Name
+              %th.even PR count
+            - username_count.each do |username, count|
+              %tr{class: cycle('odd', 'even')}
+                %td=username
+                %td=count
+      .clear
 
 

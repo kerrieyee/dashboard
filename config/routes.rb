@@ -53,4 +53,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get "/auth/:provider/callback" => 'authentications#create'
+  get "/auth/failure" => "authentications#failure"
 end

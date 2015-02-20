@@ -7,9 +7,8 @@ class DashboardsController < ApplicationController
 
     @repo_pr = {}
     repos.map do |repo|
-      @repo_pr.merge({"#{repo}" => create_user_pr_count(repo)})
+      @repo_pr.merge!({"#{repo}" => create_user_pr_count(repo)})
     end
-    @repo_pr
   end
 
 
